@@ -1,0 +1,21 @@
+# This is a basic workflow to help you get started with Actions
+
+name: ejercicio-4 CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ejercicio-4]
+
+jobs:
+  desplegar-web:
+    runs-on: ubuntu-latest
+    services:
+      portal-web:
+        image: nginx:latest
+        ports:
+          - 8080:80
+    steps:
+      - name: servidor de aplicacion NGINX
+        run: curl http://localhost:8080
