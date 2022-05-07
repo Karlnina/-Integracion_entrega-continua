@@ -37,7 +37,6 @@ jobs:
           <h1>Inicio proceso de prueba01....</h1>' > /index.html
 
   Prueba02-despliegue:
-    needs: build
     runs-on: ubuntu-latest
     services:
       portal-resultados:
