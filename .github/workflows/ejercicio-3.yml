@@ -1,0 +1,51 @@
+# This is a basic workflow to help you get started with Actions
+
+name: ejercicio-3 CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ejercicio-3]
+
+jobs:
+  configuracion:
+    runs-on: ubuntu-latest
+    steps:
+      - name: proceso de configuración
+        run: |
+          echo '<h1>Inicio proceso de configuración....</h1>' > index.html
+
+  construccion:
+    needs: configuracion
+    runs-on: ubuntu-latest
+    steps:
+      - name: proceso de construcción
+        run: |
+          echo '
+          <h1>Inicio proceso de configuración....</h1>
+          <h1>Inicio proceso de Construccion....</h1>' > index.html
+  prueba01:
+    needs: construccion
+    runs-on: ubuntu-latest
+    steps:
+      - name: proceso de prueba
+        run: |
+          echo '
+          <h1>Inicio proceso de configuración....</h1>
+          <h1>Inicio proceso de Construccion....</h1>
+          <h1>Inicio proceso de prueba01....</h1>' > /index.html
+
+  Prueba02-despliegue:
+    needs: build
+    runs-on: ubuntu-latest
+    services:
+      portal-resultados:
+        image: nginx:latest
+        ports:
+          - 8080:80
+    steps:
+      - name: Prueba02 y despliegue)
+        run: echo 'ejecucion proceso de prueba02 y despliegue'
+      - name: Acceder al portal resultados
+        run: curl http://localhost:8080
