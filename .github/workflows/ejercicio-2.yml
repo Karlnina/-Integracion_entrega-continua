@@ -10,18 +10,11 @@ on:
 
 jobs:
   setup:
-    runs-on: ubuntu-latest
-    services:
-      portal-resultados:
-        image: nginx:latest
-        ports:
-           - 8080:80
+    runs-on: ubuntu-latest    
     steps:
       - name: proceso de configuración
         run: |
           echo 'Inicio proceso de configuración....' > index.html
-      - name: verificar configuración
-        run: ls -la /usr/share/ && cat /etc/nginx/nginx.conf
           
   build:
     needs: setup  
@@ -33,11 +26,19 @@ jobs:
   test:
     needs: build  
     runs-on: ubuntu-latest
+    services:
+      portal-resultados:
+        image: nginx:latest
+        ports:
+           - 8080:80
     steps:
       - name: proceso de prueba
         run: |
           echo 'Inicio proceso de prueba....' > index.html
       - name: Acceder al portal resultados
         run: curl http://localhost:8080
+      
+      - name: verificar configuración
+        run: ls -la && ls -la /usr/share/nginx && cat /etc/nginx/conf.d/*.conf
     
   
