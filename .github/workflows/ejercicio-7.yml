@@ -53,4 +53,4 @@ jobs:
           ejecucion proceso de prueba02 y despliegue' > index.html
         
       - name: Acceder al portal resultados
-        run: curl http://localhost:8080 && ls -la /usr/share/nginx/html/
+        run: curl http://localhost:8080 && ls -la /usr/share/nginx
