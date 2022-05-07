@@ -6,17 +6,37 @@ name: ejercicio-2 CI
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ejercicio-2]
+    branches: [ ejercicio-2 ]
 
 jobs:
-  crear-acceder-contenedor:
-    runs-on: self-hosted
-
+  setup:
+    runs-on: ubuntu-latest
     services:
-      portal:
-        image: httpd:latest
+      portal-resultados:
+        image: nginx:latest
         ports:
-          - 8080:80
+           - 8080:80
     steps:
-      - name: Acceder al portal
+      - name: proceso de configuración
+        run: |
+          echo 'Inicio proceso de configuración....' > /usr/share/html/index.html
+        run: ls - la /usr/share/ && cat /usr/share/html/index.html
+
+  build:
+    needs: setup  
+    runs-on: ubuntu-latest
+    steps:
+      - name: proceso de construcción
+        run: |
+          echo 'Inicio proceso de Construccion....' > /usr/share/html/index.html
+  test:
+    needs: build  
+    runs-on: ubuntu-latest
+    steps:
+      - name: proceso de prueba
+        run: |
+          echo 'Inicio proceso de prueba....' > /usr/share/html/index.html
+      - name: Acceder al portal resultados
         run: curl http://localhost:8080
+    
+  
