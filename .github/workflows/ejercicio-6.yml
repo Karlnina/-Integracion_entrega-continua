@@ -1,0 +1,44 @@
+# This is a basic workflow to help you get started with Actions
+
+name: ejercicio-6 CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ejercicio-6]
+
+jobs:
+  setup:
+    runs-on: self-hosted
+    steps:
+      - name: proceso de configuración
+        run: |
+          echo '<h1>Inicio proceso de configuración....</h1>' > index.html
+
+  build:
+    needs: setup
+    runs-on: self-hosted
+    steps:
+      - name: proceso de construcción
+        run: |
+          echo '
+          <h1>Inicio proceso de configuración....</h1>
+          <h1>Inicio proceso de Construccion....</h1>' > index.html
+  test:
+    needs: build
+    runs-on: self-hosted
+    services:
+      portal-resultados:
+        image: nginx:latest
+        ports:
+          - 8080:80
+    steps:
+      - name: proceso de prueba
+        run: |
+          echo '
+          <h1>Inicio proceso de configuración....</h1>
+          <h1>Inicio proceso de Construccion....</h1>
+          <h1>Inicio proceso de prueba....</h1>' > /usr/share/nginx/html/index.html
+      - name: Acceder al portal resultados
+        run: curl http://localhost:8080
