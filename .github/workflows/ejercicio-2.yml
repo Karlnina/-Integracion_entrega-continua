@@ -38,7 +38,7 @@ jobs:
         run: |
           echo '
           <h1>Inicio proceso de configuración....</h1>
-          <h1>Inicio proceso de Construccion....</h1>'
+          <h1>Inicio proceso de Construccion....</h1>
           <h1>Inicio proceso de prueba....</h1>' > /usr/share/nginx/html/index.html
       - name: Acceder al portal resultados
         run: curl http://localhost:8080
