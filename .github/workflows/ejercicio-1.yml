@@ -14,6 +14,7 @@ jobs:
     steps:
       - name: crear 5 archivos
         run: |
+          mkdir artefacto
           mkdir archivos && cd archivos
           echo 'Contenido archivo 1' > archivo1.txt
           echo 'Contenido archivo 2' > archivo2.txt
@@ -23,10 +24,22 @@ jobs:
           cd ..
 
       - name: comprimir archivos
-        run: zip -r archivos.zip archivos
+        uses: papeloto/action-zip@v1
+        with:
+          files: archivos/
+          dest: archivos.zip
 
       - name: Subiendo a Archivos zip
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: mis-archivos
           path: archivos.zip
+          
+      - name:  Download Artefacto
+        uses: actions/download-artifact@v3
+        with:
+          name: mis-archivos
+          path: ~/artefacto
+
+      - name: verificacio la descarga del arefactos
+        run: ls -la ~/artefacto
