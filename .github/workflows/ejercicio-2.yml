@@ -20,8 +20,9 @@ jobs:
       - name: proceso de configuración
         run: |
           echo 'Inicio proceso de configuración....' > /usr/share/html/index.html
-        run: ls - la /usr/share/ && cat /usr/share/html/index.html
-
+      - name: verificar configuración
+        run: ls -la /usr/share/ && cat /usr/share/html/index.html    
+          
   build:
     needs: setup  
     runs-on: ubuntu-latest
