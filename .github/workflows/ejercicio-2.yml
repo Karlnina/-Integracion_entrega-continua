@@ -19,9 +19,9 @@ jobs:
     steps:
       - name: proceso de configuración
         run: |
-          echo 'Inicio proceso de configuración....' > /usr/share/html/index.html
+          echo 'Inicio proceso de configuración....' > index.html
       - name: verificar configuración
-        run: ls -la /usr/share/ && cat /usr/share/html/index.html    
+        run: ls -la /usr/share/ && cat /etc/nginx/nginx.conf
           
   build:
     needs: setup  
@@ -29,14 +29,14 @@ jobs:
     steps:
       - name: proceso de construcción
         run: |
-          echo 'Inicio proceso de Construccion....' > /usr/share/html/index.html
+          echo 'Inicio proceso de Construccion....' > index.html
   test:
     needs: build  
     runs-on: ubuntu-latest
     steps:
       - name: proceso de prueba
         run: |
-          echo 'Inicio proceso de prueba....' > /usr/share/html/index.html
+          echo 'Inicio proceso de prueba....' > index.html
       - name: Acceder al portal resultados
         run: curl http://localhost:8080
     
