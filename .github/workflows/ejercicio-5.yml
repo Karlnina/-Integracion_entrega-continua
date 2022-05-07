@@ -1,0 +1,22 @@
+# This is a basic workflow to help you get started with Actions
+
+name: ejercicio-5 CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ejercicio-5]
+
+jobs:
+    runs-on: self-hosted
+        
+    steps:
+    - name: configuración de IP servidor
+      run: ip a
+    steps:
+    - name: recursos servidor
+      run: cat /proc/cpuinfo
+    steps:
+    - name: Sistema operativo servidor
+      run: hostnamectl
