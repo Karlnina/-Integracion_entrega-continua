@@ -9,14 +9,13 @@ on:
     branches: [ejercicio-5]
 
 jobs:
+  caracteristicas-servidor:
     runs-on: self-hosted
         
     steps:
     - name: configuración de IP servidor
       run: ip a
-    steps:
     - name: recursos servidor
       run: cat /proc/cpuinfo
-    steps:
     - name: Sistema operativo servidor
       run: hostnamectl
