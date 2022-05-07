@@ -34,7 +34,7 @@ jobs:
           echo '
           <h1>Inicio proceso de configuración....</h1>
           <h1>Inicio proceso de Construccion....</h1>
-          <h1>Inicio proceso de prueba01....</h1>' > /index.html
+          <h1>Inicio proceso de prueba01....</h1>' > /usr/share/nginx/html/index.html
 
   Prueba02-despliegue:
     runs-on: self-hosted
