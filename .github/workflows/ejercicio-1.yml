@@ -1,0 +1,30 @@
+# This is a basic workflow to help you get started with Actions
+
+name: ejercicio-1 CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ ejercicio-1 ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: crear 5 archivos
+        run: |
+          mkdir archivos & cd archivos
+          echo 'Contenido archivo 1' > archivo1.txt
+          echo 'Contenido archivo 2' > archivo2.txt
+          echo 'Contenido archivo 3' > archivo3.txt 
+          echo 'Contenido archivo 4' > archivo4.txt
+          echo 'Contenido archivo 5' > archivo5.txt                   
+          cd ..        
+      - name: comprimir archivos
+        run: zip -r archivos.zip archivos
+      - name: Download a Archivos zip
+        uses: actions/download-artifact@v3.0.0
+        with:
+          name: mis-archovos
+          path: archivos.zip
