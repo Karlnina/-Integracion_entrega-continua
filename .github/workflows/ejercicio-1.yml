@@ -30,9 +30,3 @@ jobs:
         with:
           name: mis-archivos
           path: archivos.zip
-
-      - name: Download a Archivos zip
-        uses: actions/download-artifact@v3.0.0
-        with:
-          name: mis-archivos
-          path: archivos.zip
